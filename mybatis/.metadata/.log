@@ -1,0 +1,52 @@
+!SESSION 2017-07-04 15:45:44.791 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_101
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=zh_CN
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jface.text 2 0 2017-07-04 15:48:35.566
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-07-04 15:48:35.571
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-07-04 15:48:35.709
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-07-04 15:48:35.709
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-07-04 15:48:35.787
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-07-04 15:48:35.788
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-07-04 15:48:38.457
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\huhu5'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.resources 4 77 2017-07-04 15:52:10.743
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2017-07-04 15:52:10.743
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2017-07-04 15:52:10.743
+!MESSAGE E:\gitworkspace\git\java23\mybatis overlaps the workspace location: E:\gitworkspace\git\java23\mybatis
+
+!ENTRY org.eclipse.core.resources 4 77 2017-07-04 15:53:37.609
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2017-07-04 15:53:37.610
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2017-07-04 15:53:37.610
+!MESSAGE E:\gitworkspace\git\java23\mybatis overlaps the workspace location: E:\gitworkspace\git\java23\mybatis
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-04 16:00:18.732
+!MESSAGE Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-07-04 16:00:18.738
+!MESSAGE Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
