@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: juit:juit:4.12">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/juit/juit/4.12/juit-4.12.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/juit/juit/4.12/juit-4.12-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/juit/juit/4.12/juit-4.12-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
