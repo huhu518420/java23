@@ -16,6 +16,6 @@ public class UserDaoTest {
 
         //2.从容器中获取对象
         UserDao userDao = (UserDao) applicationContext.getBean("userDao2");
-        userDao.save();
+
     }
 }

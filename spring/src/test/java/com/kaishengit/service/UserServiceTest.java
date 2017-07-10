@@ -21,6 +21,8 @@ public class UserServiceTest {
 
        userService.save();
 
+       userService.sum();
+
         //BasicInjectService basicInjectService = (BasicInjectService) applicationContext.getBean("basicInjectService");
         //basicInjectService.show();
 

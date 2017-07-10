@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
 
     <!--将java类交给spring管理-->
     <!--
@@ -9,50 +15,73 @@
     class:被管理bean的完全限定名
     简单说就是创建UserDao对象
     -->
+
     <bean id="userDao" class="com.kaishengit.dao.UserDao"/>
     <bean id="weixinDao1" class="com.kaishengit.dao.WeixinDao"/>
-
-    <!-- 构造方法注入-->
+    <!--
+    &lt;!&ndash; 构造方法注入&ndash;&gt;
     <bean id="userService" class="com.kaishengit.service.UserService">
-
-        <!--&lt;!&ndash;通过type属性注入&ndash;&gt;
+        &lt;!&ndash;&lt;!&ndash;通过type属性注入&ndash;&gt;
         <constructor-arg type="com.kaishengit.dao.UserDao" ref="userDao"/>
         <constructor-arg type="com.kaishengit.dao.WeixinDao" ref="weixinDao1"/>
--->
-        <!--&lt;!&ndash;通过参数索引注入&ndash;&gt;
+&ndash;&gt;
+        &lt;!&ndash;&lt;!&ndash;通过参数索引注入&ndash;&gt;
         <constructor-arg index="0" ref="userDao"/>
         <constructor-arg index="1" ref="weixinDao1"/>
--->
-        <!--通过name属性(Service里的参数名)注入-->
+&ndash;&gt;
+        &lt;!&ndash;通过name属性(Service里的参数名)注入&ndash;&gt;
+
         <constructor-arg name="userDao" ref="userDao"/>
         <constructor-arg name="weixinDao" ref="weixinDao1"/>
+
+
     </bean>
 
-    <!--将UserService类交给spring管理-->
-    <!--等同于创建UserService对象-->
-    <!--<bean id="userService" class="com.kaishengit.service.UserService">
+--> <bean id="userService" class="com.kaishengit.service.UserService">
+    <constructor-arg index="0" ref="userDao"/>
+    <constructor-arg index="1" ref="weixinDao1"/>
+</bean>
 
-    &lt;!&ndash;name:UserService里面的set方法去掉set首字母大写
-    ref:Bean 里面的id属性
-    等同于在UserService中调用了setUserDao方法&ndash;&gt;
-    <property name="userDao" ref="userDao"/>
+    <!-- AOP 通知类 -->
+    <bean id="aspectAdvice" class="com.kaishengit.ascept.AspectAdvice"/>
+    <!-- AOP 配置 -->
+    <aop:config>
+        <!-- 告诉Spring通知类是哪一个 -->
+        <aop:aspect ref="aspectAdvice">
+            <!-- 切入点表达式：声明目标对象 -->
+            <aop:pointcut id="myPointCut" expression="execution(* com.kaishengit.service..*.*(..))"/>
+            <!-- 声明通知 -->
 
-</bean>-->
+            <!-- 前置通知 -->
+            <!--<aop:before method="beforeAdvice" pointcut-ref="myPointCut"/>-->
+            <!-- 后置通知 -->
+            <!--<aop:after-returning method="afterReturningAdvice" pointcut-ref="myPointCut" returning="result"/>-->
+            <!-- 异常通知 -->
+            <!--<aop:after-throwing method="afterThrowingAdvice" pointcut-ref="myPointCut" throwing="ex"/>-->
+            <!-- 最终通知 -->
+            <!--<aop:after method="afterAdvice" pointcut-ref="myPointCut"/>-->
+
+            <!-- 环绕通知 -->
+            <aop:around method="aroundAdvice" pointcut-ref="myPointCut"/>
+        </aop:aspect>
+    </aop:config>
+
+
 
 
 
     <!--将WeixinService交给spring管理-->
-    <bean id="weixinDao" class="com.kaishengit.service.WinxinService">
+    <!--<bean id="weixinDao" class="com.kaishengit.service.WinxinService">
         <property name="weixinDao" ref="weixinDao1"/>
 
     </bean>
-    <!--非对象类型注入-->
+    &lt;!&ndash;非对象类型注入&ndash;&gt;
     <bean id="basicInjectService" class="com.kaishengit.service.BasicInjectService">
         <property name="name" value="jack"/>
         <property name="scoer" value="87.5"/>
-        <!--List注入方法
+        &lt;!&ndash;List注入方法
         name:和Service里的属性值对应
-        -->
+        &ndash;&gt;
         <property name="nameList" >
             <list>
                 <value>aa</value>
@@ -63,7 +92,7 @@
             </list>
         </property>
 
-        <!--Set注入方法-->
+        &lt;!&ndash;Set注入方法&ndash;&gt;
         <property name="myset" >
             <set>
                 <value>aa11</value>
@@ -73,10 +102,10 @@
 
             </set>
         </property>
-        <!--Map注入-->
+        &lt;!&ndash;Map注入&ndash;&gt;
         <property name="userMap">
             <map>
-                <!--key的值随意起，value的值为bean里面的引用-->
+                &lt;!&ndash;key的值随意起，value的值为bean里面的引用&ndash;&gt;
                 <entry key="map" value-ref="userDao"/>
             </map>
         </property>
@@ -88,8 +117,8 @@
             </props>
         </property>
 
-        
-    </bean>
+
+    </bean>-->
 
     <!--别名-->
     <!--<alias name="userDao" alias="userDao2"/>-->

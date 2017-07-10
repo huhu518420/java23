@@ -7,4 +7,8 @@ public class UserDao {
     public void save()  {
         System.out.println("saveed.....");
     }
+
+    public void sum(int a,int b) {
+        System.out.println(a+b);
+    }
 }

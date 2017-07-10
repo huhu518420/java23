@@ -33,8 +33,14 @@ public class UserService {
     }
 */
     public void save() {
-        userDao.save();
+        //userDao.save();
+        /*if(1==1) {
+            throw new RuntimeException("执行异常");
+        }*/
 
 
     }
+   public void sum() {
+        userDao.sum(10,20);
+   }
 }

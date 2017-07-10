@@ -26,10 +26,23 @@
             <version>${spring-version}</version>
         </dependency>
 
+        <!--CGlib配置-->
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>3.2.5</version>
+        </dependency>
+
+        <!--AOP通知-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>4.3.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>4.3.5.RELEASE</version>
         </dependency>
 
     </dependencies>
