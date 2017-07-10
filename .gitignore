@@ -3,7 +3,8 @@ RemoteSystemsTempFiles/
 .settings/
 target/
 .classpath
-.gitigonre
+.gitignore
 .project
 .idea/
 spring.iml
+.recommenders/
