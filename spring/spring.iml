@@ -37,5 +37,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.3.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:4.3.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.9" level="project" />
+    <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-test:4.3.5.RELEASE" level="project" />
   </component>
 </module>

@@ -1,13 +1,23 @@
 package com.kaishengit.ascept;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 /**
  * 通知类
  * Created by huhu5 on 2017/7/10.
  */
+@Component
+@Aspect
 public class AspectAdvice  {
 
+    @Pointcut("execution(* com.kaishengit.service..*.*(..))")
+    public void pointcup() {}
+
+    @Before("pointcup()")
     public void beforeAdvice() {
         System.out.println("前置通知");
     }

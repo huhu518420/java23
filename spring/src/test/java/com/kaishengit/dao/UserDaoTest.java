@@ -15,7 +15,8 @@ public class UserDaoTest {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         //2.从容器中获取对象
-        UserDao userDao = (UserDao) applicationContext.getBean("userDao2");
+        UserDao userDao = (UserDao) applicationContext.getBean("userDao");
+        userDao.sum(10,20);
 
     }
 }

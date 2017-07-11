@@ -45,6 +45,22 @@
             <version>4.3.5.RELEASE</version>
         </dependency>
 
+        <!--JSR330注解-->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+
+        <!--基于DI的spring单元测试-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.5.RELEASE</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>

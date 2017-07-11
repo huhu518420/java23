@@ -7,18 +7,29 @@
       http://www.springframework.org/schema/aop
       http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--开启自动扫描：会自动扫描com.kaishengit包及其子包的加油特殊注解的类，并将这些类放入到spring的容器中-->
+  <context:component-scan base-package="com.kaishengit"/>
+
+<!--添加基于注解的AOP配置-->
+    <aop:aspectj-autoproxy/>
 
 
-    <!--将java类交给spring管理-->
-    <!--
+
+
+
+
+<!--
+
+    &lt;!&ndash;将java类交给spring管理&ndash;&gt;
+    &lt;!&ndash;
     id:spring 容器中Bean的名称，整个容器唯一（将类名首写字母小写其他不变）
     class:被管理bean的完全限定名
     简单说就是创建UserDao对象
-    -->
+    &ndash;&gt;
 
     <bean id="userDao" class="com.kaishengit.dao.UserDao"/>
     <bean id="weixinDao1" class="com.kaishengit.dao.WeixinDao"/>
-    <!--
+    &lt;!&ndash;
     &lt;!&ndash; 构造方法注入&ndash;&gt;
     <bean id="userService" class="com.kaishengit.service.UserService">
         &lt;!&ndash;&lt;!&ndash;通过type属性注入&ndash;&gt;
@@ -37,92 +48,95 @@
 
     </bean>
 
---> <bean id="userService" class="com.kaishengit.service.UserService">
+&ndash;&gt; <bean id="userService" class="com.kaishengit.service.UserService">
     <constructor-arg index="0" ref="userDao"/>
     <constructor-arg index="1" ref="weixinDao1"/>
 </bean>
 
-    <!-- AOP 通知类 -->
+    &lt;!&ndash; AOP 通知类 &ndash;&gt;
     <bean id="aspectAdvice" class="com.kaishengit.ascept.AspectAdvice"/>
-    <!-- AOP 配置 -->
+    &lt;!&ndash; AOP 配置 &ndash;&gt;
     <aop:config>
-        <!-- 告诉Spring通知类是哪一个 -->
+        &lt;!&ndash; 告诉Spring通知类是哪一个 &ndash;&gt;
         <aop:aspect ref="aspectAdvice">
-            <!-- 切入点表达式：声明目标对象 -->
+            &lt;!&ndash; 切入点表达式：声明目标对象 &ndash;&gt;
             <aop:pointcut id="myPointCut" expression="execution(* com.kaishengit.service..*.*(..))"/>
-            <!-- 声明通知 -->
+            &lt;!&ndash; 声明通知 &ndash;&gt;
 
-            <!-- 前置通知 -->
-            <!--<aop:before method="beforeAdvice" pointcut-ref="myPointCut"/>-->
-            <!-- 后置通知 -->
-            <!--<aop:after-returning method="afterReturningAdvice" pointcut-ref="myPointCut" returning="result"/>-->
-            <!-- 异常通知 -->
-            <!--<aop:after-throwing method="afterThrowingAdvice" pointcut-ref="myPointCut" throwing="ex"/>-->
-            <!-- 最终通知 -->
-            <!--<aop:after method="afterAdvice" pointcut-ref="myPointCut"/>-->
+            &lt;!&ndash; 前置通知 &ndash;&gt;
+            &lt;!&ndash;<aop:before method="beforeAdvice" pointcut-ref="myPointCut"/>&ndash;&gt;
+            &lt;!&ndash; 后置通知 &ndash;&gt;
+            &lt;!&ndash;<aop:after-returning method="afterReturningAdvice" pointcut-ref="myPointCut" returning="result"/>&ndash;&gt;
+            &lt;!&ndash; 异常通知 &ndash;&gt;
+            &lt;!&ndash;<aop:after-throwing method="afterThrowingAdvice" pointcut-ref="myPointCut" throwing="ex"/>&ndash;&gt;
+            &lt;!&ndash; 最终通知 &ndash;&gt;
+            &lt;!&ndash;<aop:after method="afterAdvice" pointcut-ref="myPointCut"/>&ndash;&gt;
 
-            <!-- 环绕通知 -->
+            &lt;!&ndash; 环绕通知 &ndash;&gt;
             <aop:around method="aroundAdvice" pointcut-ref="myPointCut"/>
         </aop:aspect>
     </aop:config>
+-->
 
 
 
 
+    <!--
 
-    <!--将WeixinService交给spring管理-->
-    <!--<bean id="weixinDao" class="com.kaishengit.service.WinxinService">
-        <property name="weixinDao" ref="weixinDao1"/>
+        将WeixinService交给spring管理
+        <bean id="weixinDao" class="com.kaishengit.service.WinxinService">
+            <property name="weixinDao" ref="weixinDao1"/>
 
-    </bean>
-    &lt;!&ndash;非对象类型注入&ndash;&gt;
-    <bean id="basicInjectService" class="com.kaishengit.service.BasicInjectService">
-        <property name="name" value="jack"/>
-        <property name="scoer" value="87.5"/>
-        &lt;!&ndash;List注入方法
-        name:和Service里的属性值对应
-        &ndash;&gt;
-        <property name="nameList" >
-            <list>
-                <value>aa</value>
-                <value>bb</value>
-                <value>cc</value>
-                <value>dd</value>
+        </bean>
+        &lt;!&ndash;非对象类型注入&ndash;&gt;
+        <bean id="basicInjectService" class="com.kaishengit.service.BasicInjectService">
+            <property name="name" value="jack"/>
+            <property name="scoer" value="87.5"/>
+            &lt;!&ndash;List注入方法
+            name:和Service里的属性值对应
+            &ndash;&gt;
+            <property name="nameList" >
+                <list>
+                    <value>aa</value>
+                    <value>bb</value>
+                    <value>cc</value>
+                    <value>dd</value>
 
-            </list>
-        </property>
+                </list>
+            </property>
 
-        &lt;!&ndash;Set注入方法&ndash;&gt;
-        <property name="myset" >
-            <set>
-                <value>aa11</value>
-                <value>bb11</value>
-                <value>cc11</value>
-                <value>dd11s</value>
+            &lt;!&ndash;Set注入方法&ndash;&gt;
+            <property name="myset" >
+                <set>
+                    <value>aa11</value>
+                    <value>bb11</value>
+                    <value>cc11</value>
+                    <value>dd11s</value>
 
-            </set>
-        </property>
-        &lt;!&ndash;Map注入&ndash;&gt;
-        <property name="userMap">
-            <map>
-                &lt;!&ndash;key的值随意起，value的值为bean里面的引用&ndash;&gt;
-                <entry key="map" value-ref="userDao"/>
-            </map>
-        </property>
+                </set>
+            </property>
+            &lt;!&ndash;Map注入&ndash;&gt;
+            <property name="userMap">
+                <map>
+                    &lt;!&ndash;key的值随意起，value的值为bean里面的引用&ndash;&gt;
+                    <entry key="map" value-ref="userDao"/>
+                </map>
+            </property>
 
-        <property name="likeMap">
-            <props>
-                <prop key="p1">v1</prop>
-                <prop key="p2">v2</prop>
-            </props>
-        </property>
+            <property name="likeMap">
+                <props>
+                    <prop key="p1">v1</prop>
+                    <prop key="p2">v2</prop>
+                </props>
+            </property>
 
 
-    </bean>-->
+        </bean>
 
-    <!--别名-->
-    <!--<alias name="userDao" alias="userDao2"/>-->
+        别名
+        <alias name="userDao" alias="userDao2"/>
 
+    -->
 
 
 
