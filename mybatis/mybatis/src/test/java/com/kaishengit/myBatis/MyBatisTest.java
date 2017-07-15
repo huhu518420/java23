@@ -1,13 +1,16 @@
 package com.kaishengit.myBatis;
 
 import java.io.IOException;
-import java.io.Reader;
+import java.util.List;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.kaishengit.entity.User;
+
+import com.kaishengit.util.MyBatisUtil;
 
 
 /**
@@ -17,8 +20,8 @@ import org.junit.Test;
  *
  */
 public class MyBatisTest {
-	
-	
+	//将MyBatisTest类加入到日志中
+	private Logger logger = LoggerFactory.getLogger(MyBatisTest.class);
 	@Test
 	public void first() throws IOException {
 		
@@ -26,31 +29,60 @@ public class MyBatisTest {
 		//2.创建SqlSessionFactory
 		//3.创建SqlSession
 		//4.用SqlSession来操作数据库
+		//1. 加载配置文件
+		/*SqlSession sqlSession = MyBatisUtil.getSqlsession();
 		
-		//1.加载配置文件
-		//从classpath中读取mybatis.xml配置文件.。。。包导入不成功时降低版本即可
-		Reader reader = Resources.getResourceAsReader("mybatis.xml");
-		//2.创建SqlSessionFactory
-		//根据SqlSessionFactoryBuilder对象构建SqlSessionFactory
-		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
-		//3.创建SqlSession
-		//根据SqlSessionFactory对象创建SqlSession对象
-		SqlSession sqlSession = sessionFactory.openSession();
 		//4.用SqlSession来操作数据库
+		//User user = sqlSession.selectOne("com.kaishengit.mapper.UserMaooer.findById", 1);
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		User user = mapper.findById(1);
 		
+		System.out.println(user.getUserName());
+		System.out.println(user.getAddress());
+		//5.关闭Session
+		sqlSession.close();
+		*/
+	}
+	
+	@Test
+	public void findAll() throws IOException {
+		
+		SqlSession sqlSession = MyBatisUtil.getSqlsession();
+		
+		//4.用SqlSession来操作数据库
+		List<User> userList =  sqlSession.selectList("com.kaishengit.mapper.UserMapper.findAll");
+		
+		for(User users:userList) {
+			System.out.println(users.getUserName());
+		}
 		
 		//5.关闭Session
 		sqlSession.close();
 		
+	}
+	
+	
+	@Test
+	public void findByNameAndPassword() throws IOException {
 		
+		SqlSession sqlSession = MyBatisUtil.getSqlsession();
 		
+		//4.用SqlSession来操作数据库
+		List<User> userList =  sqlSession.selectList("com.kaishengit.mapper.UserMapper.findByMapParam");
 		
+		for(User user : userList) {
+			//日志输出形式
+			logger.debug("{} -> {}",user.getUserName(),user.getPassword());
+			//user.getUserName() + "->" + user.getPassword()
+		}
 		
-		
-		
-		
-		
+		//5.关闭Session
+		sqlSession.close();
 		
 	}
 	
+	
+	
+	
 }
+

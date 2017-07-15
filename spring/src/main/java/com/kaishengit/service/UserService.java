@@ -1,50 +1,26 @@
 package com.kaishengit.service;
 
 import com.kaishengit.dao.UserDao;
-import com.kaishengit.dao.WeixinDao;
+import com.kaishengit.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.SQLException;
 
 /**
- * Created by huhu5 on 2017/7/9.
+ * Created by huhu5 on 2017/7/11.
  */
-@Service
+@Repository
 public class UserService {
-    //自动注入添加在属性上
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private WeixinDao weixinDao;
-
-   /* //构造方法注入
-    public UserService(UserDao userDao, WeixinDao weixinDao) {
-        this.userDao = userDao;
-        this.weixinDao = weixinDao;
-
-    }
-*/
-    /*
-    依赖注入(不用new创建一个类的对象)
-    UserDao依赖UserService
-    * */
-   /*
-    private UserDao userDao;
-    //给对象set注入时提供set方法
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-*/
-
-    public void save() {
-        //userDao.save();
-        /*if(1==1) {
-            throw new RuntimeException("执行异常");
-        }*/
-
+    //事物加载Service的方法上
+    @Transactional
+    public void save(User user) throws SQLException{
+        userDao.save(user);
+        userDao.save(user);
     }
 
-   public void sum() {
-        userDao.sum(10,20);
-   }
 }

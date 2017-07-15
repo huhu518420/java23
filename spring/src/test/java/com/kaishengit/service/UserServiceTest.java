@@ -1,32 +1,31 @@
 package com.kaishengit.service;
 
+import com.kaishengit.entity.User;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Created by huhu5 on 2017/7/9.
+ * Created by huhu5 on 2017/7/11.
  */
-
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class UserServiceTest {
+
+    @Autowired
+    private UserService userService;
+
     @Test
-    public void  save() {
-        //创建容器,获取的是需要加载的ClassPath路径下的spring配置文件
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+    public void save() throws Exception {
+        User user = new User();
+        user.setUser_name("abc");
+        user.setPassword("123123");
+        user.setAddress("北京");
+        user.setDept_id(1);
 
-        //获取之前需要先注入
-        //从容器（applicationCext.xml）中获取对象，参数为Java类(Bean)里的id属性值
-       UserService userService = (UserService) applicationContext.getBean("userService");
-
-       userService.save();
-
-       userService.sum();
-
-        //BasicInjectService basicInjectService = (BasicInjectService) applicationContext.getBean("basicInjectService");
-        //basicInjectService.show();
+        userService.save(user);
 
     }
-
-
 }

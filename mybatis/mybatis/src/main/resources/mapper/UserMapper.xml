@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace命名空间 ，推荐写成类似完全限定名的形式-->
+  <!--namespace使用xml注释的时候只代表是一个类，使用注释的时候必须和接口的名一致  -->
+<mapper namespace="com.kaishengit.mapper.UserMapper">
+	<!-- 
+		根据Id查询User对象
+		id: 类似方法名
+		parameterType : 参数类型（可选）
+		resultType : 返回值类型(可选) 
+	-->
+	
+	<sql id="allColumns">
+		id,user_name,password,address,dept_id
+	</sql>
+	
+	
+	<select id="findById" parameterType="int" resultType="User" useCache="false">
+		select 
+		<include refid="allColumns"/>
+		 from t_user where id = #{id}
+	</select>
+	
+	<select id="findAll" resultType="User">
+		select <include refid="allColumns"/> from t_user
+	</select>
+	
+	<select id="findByMapParam" parameterType="map" resultType="User">
+		select <include refid="allColumns"/> from t_user where user_name = #{name} and password = #{pwd}
+	</select>
+
+
+</mapper>

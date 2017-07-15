@@ -38,10 +38,11 @@
 	
 	<!-- 加载Mapper配置文件 -->
 	<mappers>
-		<mapper resource="mapper/UserMapper.xml"/> 
+		<!-- <mapper resource="mapper/UserMapper.xml"/> -->
+		
 		<mapper class="com.kaishengit.mapper.UserMapper"/>
-		<mapper resource="mapper/DeptMapper.xml"/>
-		<mapper resource="mapper/MovieMapper.xml"/>
+		<!-- <mapper resource="mapper/DeptMapper.xml"/>
+		<mapper resource="mapper/MovieMapper.xml"/> -->
 	</mappers>
 	
 </configuration>

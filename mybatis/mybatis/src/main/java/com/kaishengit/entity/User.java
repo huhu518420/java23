@@ -10,7 +10,7 @@ public class User implements Serializable {
 	private String address;
 	private String password;
 	private Integer deptId;
-	private Dept dept;
+	
 	
 	
 	public User(){}
@@ -52,12 +52,7 @@ public class User implements Serializable {
 	public void setDeptId(Integer deptId) {
 		this.deptId = deptId;
 	}
-	public Dept getDept() {
-		return dept;
-	}
-	public void setDept(Dept dept) {
-		this.dept = dept;
-	}
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", address=" + address + ", password=" + password + "]";
