@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaishengit.mapper.MovieMapper">
+
+    <!--根据命名空间的接口名称找到相应的接口，接口里的方法根据id属性的值匹配-->
+   <select id="findAll" resultType="Movie">
+       select * from movie order by id desc
+   </select>
+
+    <!--保存sql-->
+    <select id="save" resultType="Movie">
+        insert into movie (title,daoyan,sendtime,releaseyear,rate)
+        VALUES (#{title},#{daoyan},#{sendtime},#{releaseyear},${rate})
+    </select>
+
+    <!--删除-->
+    <select id="del" parameterType="Integer">
+
+        DELETE FROM movie WHERE id =#{id}
+    </select>
+
+    <!--根据id查询Movie对象-->
+    <select id="findById" resultType="Movie">
+        SELECT * FROM movie WHERE id = #{id}
+    </select>
+
+    <!--编辑Movie-->
+    <update id="editMovie" parameterType="Movie">
+        UPDATE movie set title=#{title},daoyan=#{daoyan},sendtime=#{sendtime},
+        releaseyear=#{releaseyear},rate=#{rate}
+        WHERE id = #{id}
+    </update>
+
+    <!--动态（搜索）查询sql-->
+    <select id="findByParam" resultType="Movie">
+        SELECT * FROM movie
+        <where>
+            <if test="title != null and title != ''">
+                /*模糊查询*/
+                title like concat('%',#{title},'%')
+            </if>
+            <if test="daoyan != null and daoyan!= ''">
+               and daoyan like concat('%',#{daoyan},'%')
+            </if>
+            <if test="min != null">
+                /*@gt;大于符号的转码*/
+                and rate &gt;= #{min}
+            </if>
+            <if test="max != null">
+                and rate &lt;= #{max}
+            </if>
+
+        </where>
+    </select>
+
+</mapper>
