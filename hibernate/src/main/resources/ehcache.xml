@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ehcache>
+    <!--
+        内存不足时存放到磁盘上的位置
+        java.io.tmpdir 当前操作系统登陆用户的临时文件夹
+    -->
+    <diskStore path="java.io.tmpdir"/>
+    <defaultCache
+
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="true"
+    />
+
+
+</ehcache>

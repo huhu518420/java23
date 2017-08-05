@@ -12,5 +12,11 @@
     <packaging>jar</packaging>
     <artifactId>crm_common</artifactId>
 
+    <!--<dependencies>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+        </dependency>
+    </dependencies>-->
 
 </project>

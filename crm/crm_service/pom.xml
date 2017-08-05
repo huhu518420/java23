@@ -13,10 +13,29 @@
     <artifactId>crm_service</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.kaishengit</groupId>
+            <artifactId>crm_common</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.kaishengit</groupId>
             <artifactId>crm_entity</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
+
+
+
     </dependencies>
 
 </project>

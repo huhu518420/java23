@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaishengit.crm.mapper.SalechanceMapper">
+
+  <!--根据分页查询-->
+  <select id="findMySaleByParam" resultType="Salechance">
+    SELECT
+	s.*, c.cust_name AS custName
+    FROM
+        salechance s,
+        customer c
+    WHERE
+        s.cust_id = c.id
+    AND s.account_id = #{accountId};
+
+  </select>
+
+    <!--查询关联客户-->
+    <select id="findAllContentCustomerById" resultType="com.kaishengit.crm.entity.Customer">
+        SELECT
+        distinct
+        c.cust_name as custName,c.id
+        FROM
+            salechance s,
+            customer c
+        WHERE
+            c.account_id = #{accountId};
+    </select>
+
+    <!--保存-->
+    <insert id="insert" parameterType="com.kaishengit.crm.entity.Salechance" useGeneratedKeys="true" keyProperty="id">
+        insert into salechance (id, name, cust_id,
+        worth, progress, create_time,
+        last_time, account_id, content
+        )
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{custId,jdbcType=INTEGER},
+        #{worth,jdbcType=REAL}, #{progress,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{lastTime,jdbcType=TIMESTAMP}, #{accountId,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+
+    <!--保存新的销售记录-->
+    <insert id="saveNewSaleRecord" parameterType="com.kaishengit.crm.entity.Salechancerecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO salechancerecord (
+        id,
+        sale_id,
+        create_time,
+        content
+        )
+        VALUES
+        (#{id,jdbcType=INTEGER},#{saleId,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP},#{content,jdbcType=VARCHAR});
+
+    </insert>
+
+    <!--根据id查询销售机会-->
+    <select id="findSaleChanceById" resultType="com.kaishengit.crm.entity.Salechance">
+      SELECT
+        *
+        FROM
+            salechance
+        WHERE
+            id = #{id};
+
+    </select>
+
+    <!--根据salechance的id查询跟进记录-->
+    <select id="findChanceRecordById" resultType="com.kaishengit.crm.entity.Salechancerecord">
+        SELECT
+            *
+        FROM
+            salechancerecord
+        WHERE
+            sale_id = #{id};
+
+    </select>
+
+    <delete id="delSaleChanceById">
+        DELETE
+        FROM
+            salechance
+        WHERE
+            id = #{id};
+    </delete>
+
+
+    <update id="updateMySaleRecode" parameterType="com.kaishengit.crm.entity.Salechance">
+      UPDATE salechance
+      SET progress = #{progress,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER};
+    </update>
+
+
+</mapper>

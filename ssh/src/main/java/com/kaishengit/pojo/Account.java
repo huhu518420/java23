@@ -1,17 +1,24 @@
-package com.kaishengit.crm.entity;
+package com.kaishengit.pojo;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 
  */
+@Entity
+@Table(name = "account")
 public class Account implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     /**
      * 账号
      */
+    @Column(name = "user_name")
     private String userName;
 
     /**
@@ -22,17 +29,24 @@ public class Account implements Serializable {
     /**
      * 创建时间
      */
+    @Column(name = "create_time")
     private Date createTime;
 
     /**
      * 最后修改时间
      */
+    @Column(name = "update_time")
     private Date updateTime;
 
     /**
      * 手机号码
      */
     private String mobile;
+
+    /**
+     * 部门集合
+     */
+    //private List<Dept> deptList;
 
     private static final long serialVersionUID = 1L;
 
@@ -83,4 +97,13 @@ public class Account implements Serializable {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
+    /*DeptList集合的get和set方法*//*
+    public List<Dept> getDeptList() {
+        return deptList;
+    }
+
+    public void setDeptList(List<Dept> deptList) {
+        this.deptList = deptList;
+    }*/
 }

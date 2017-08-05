@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <!--指出包的位置-->
+<hibernate-mapping package="com.kaishengit.pojo">
+    <!--指定类的位置，与上面的包形成唯一的完全限定名-->
+    <class name="Student" table="student">
+        <!--指定类中的各个属性的配置-->
+        <id name="id" column="id">
+            <!--设置id自动增长-->
+            <generator class="native"/>
+        </id>
+
+        <property name="studentName" column="student_name"/>
+        <!--
+            多对多
+            set 节点的order-by 指的是关系表中的列
+            table:关联关系表的名称
+        -->
+        <set name="teacherSet" table="student_teacher" order-by="teacher_id desc">
+            <!--多的多端对应表的外键列名||会根据student_id查找对应的Teacher对象-->
+            <key column="student_id"></key>
+            <many-to-many class="com.kaishengit.pojo.Teacher" column="teacher_id"/>
+        </set>
+
+    </class>
+
+</hibernate-mapping>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 顶部导航栏部分 -->
 <header class="main-header">
     <!-- Logo -->
@@ -24,7 +25,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">李美苏</span>
+                        <span class="hidden-xs">${sessionScope.curr_user.userName}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -32,8 +33,12 @@
                             <img src="/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                李美苏
-                                <small>海外事业部</small>
+                                ${sessionScope.curr_user.userName}
+                                <small>
+                                    <c:forEach items="${sessionScope.curr_user.deptList}" var="dept">
+                                        ${dept.deptName} &nbsp;&nbsp;
+                                    </c:forEach>
+                                </small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
@@ -73,6 +78,8 @@
         <!-- 菜单 -->
         <ul class="sidebar-menu">
             <li class="header">系统功能</li>
+            <%--首页--%>
+            <li class="${param.active == 'home' ? 'active' : ''}"><a href="/home"><i class="fa fa-home"></i> <span>首页</span></a></li>
             <!-- 客户管理 -->
             <li class="treeview">
                 <a href="#">
@@ -89,14 +96,14 @@
             <!-- 工作记录 -->
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-bars"></i> <span>工作记录</span>
+                    <i class="fa fa-bars"></i> <span>销售机会</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/recode/my"><i class="fa fa-circle-o"></i> 我的记录</a></li>
-                    <li><a href="/recode/public"><i class="fa fa-circle-o"></i> 公共记录</a></li>
+                    <li><a href="../sales/my"><i class="fa fa-circle-o"></i> 我的销售机会</a></li>
+                    <li><a href="../sales/my/new"><i class="fa fa-circle-o"></i> 增加销售机会</a></li>
                 </ul>
             </li>
             <!-- 待办事项 -->
@@ -121,16 +128,16 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i> 待办列表</a></li>
-                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> 逾期事项</a></li>
+                    <li class="${param.active == 'charts_static' ? 'active' : ''}"><a href="/charts/static"><i class="fa fa-circle-o"></i> 静态数据演示</a></li>
+                    <li class="${param.active == 'charts_customer' ? 'active' : ''}"><a href="/charts/customer"><i class="fa fa-circle-o"></i> 客户分布报表</a></li>
                 </ul>
             </li>
 
 
-            <li><a href="../../documentation/index.html"><i class="fa fa-share-alt"></i> <span>公司网盘</span></a></li>
+            <li><a href="/disk"><i class="fa fa-share-alt"></i> <span>公司网盘</span></a></li>
             <li class="header">系统管理</li>
             <!-- 部门员工管理 -->
-            <li class="active"><a href="../../documentation/index.html"><i class="fa fa-users"></i> <span>员工管理</span></a></li>
+            <li class="${param.active == 'mangeAccount' ? 'active' : ''}"><a href="/manage/account"><i class="fa fa-users"></i> <span>员工管理</span></a></li>
             <!--<li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
         </ul>

@@ -1,5 +1,6 @@
 package com.kaishengit.crm.service;
 
+import com.kaishengit.crm.entity.Account;
 import com.kaishengit.crm.entity.Dept;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface DeptService {
 
     void saveDept(Dept dept);
 
+
 }
+
